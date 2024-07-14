@@ -1,15 +1,15 @@
 import React from "react";
-import HeroBack from "@/assets/HeroBackground.svg";
+import HeroBack from "@/assets/hero.gif";
 import Image from "next/image";
 import { Button } from "../ui/button";
 
 const Hero = () => {
   return (
-    <div>
+    <div className="">
 
-    <div className="relative w-full rounded-b-full -z-10">
-      <Image height={200} src={HeroBack} width={100} className="w-full sm:rounded-b-[80px]" alt="Hero Background" />
-      <div className="absolute inset-y-0 left-0 flex items-center   w-full bg-gradient-hero rounded-b-[80px]">
+    <div className="relative w-full rounded-b-full -z-10 ">
+      <Image height={200} src={HeroBack} width={100} className="w-full  sm:rounded-b-[80px]" alt="Hero Background" />
+      <div className="absolute inset-y-0 left-0 flex items-center   w-full bg-gradient-hero sm:rounded-b-[80px]">
         <div className="container">
 
         <div className="text-left w-full md:w-[70%] lg:w-[60%]    flex flex-col gap-3">

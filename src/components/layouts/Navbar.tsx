@@ -10,6 +10,7 @@ import { CgRing } from "react-icons/cg";
 import { IoIosArrowDown } from "react-icons/io";
 import { GiCrossMark } from "react-icons/gi";
 import Link from "next/link";
+import { IoPerson } from "react-icons/io5";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,8 +21,14 @@ const Navbar = () => {
       runs: [
         { name: "Gatwick Airport", icon: <BsFillAirplaneFill /> },
         { name: "Heathrow Airport", icon: <BsFillAirplaneFill /> },
-        { name: "London City Airport", icon: <BsFillAirplaneFill /> },
+        { name: "Birmingham Airport", icon: <BsFillAirplaneFill /> },
+        { name: "Manchester Airport", icon: <BsFillAirplaneFill /> },
+        { name: "Stansted Airport", icon: <BsFillAirplaneFill /> },
         { name: "Luton Airport", icon: <BsFillAirplaneFill /> },
+        { name: "Bristol Airport", icon: <BsFillAirplaneFill /> },
+        { name: "Edinburgh Airport", icon: <BsFillAirplaneFill /> },
+        { name: "Glasgow Airport", icon: <BsFillAirplaneFill /> },
+        { name: "London City Airport", icon: <BsFillAirplaneFill /> },
       ],
     },
     stationRuns: {
@@ -87,15 +94,12 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:block ">
-            <ul className="flex items-center gap-4">
+            <ul className="flex items-center gap-7">
               <li className="text-gray-800 hover:text-primary transition duration-300">
                 <Link href={"/"}> Home</Link>
               </li>
               <li>
                 <NavDropDown data={data.airportRuns} />
-              </li>
-              <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                Special Offer
               </li>
               <li className="text-gray-800 hover:text-primary transition duration-300 ">
                 Blogs
@@ -106,13 +110,18 @@ const Navbar = () => {
               <li className="text-gray-800 hover:text-primary transition duration-300 ">
                 Contact Us
               </li>
-              <li className="text-gray-800 hover:text-primary transition duration-300">
-                Blog
+              
+              <li>
+                <Button className="bg-primary  lg:block text-white flex ">
+                  <div className="flex items-center gap-1">
+                    <IoPerson /><span>LOGIN</span>
+                  </div>
+                </Button>
               </li>
             </ul>
 
           </nav>
-              <Button className="bg-primary hidden lg:block text-white">Signup</Button>
+
         </div>
 
         {/* Mobile Menu (Dropdown) */}
@@ -127,22 +136,22 @@ const Navbar = () => {
                   <NavDropDown data={data.airportRuns} />
                 </li>
                 <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                Special Offer
-              </li>
-              <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                Blogs
-              </li>
-              <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                About Us
-              </li>
-              <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                Contact Us
-              </li>
-              <li className="text-gray-800 hover:text-primary transition duration-300">
-                Blog
-              </li>
+                  Special Offer
+                </li>
+                <li className="text-gray-800 hover:text-primary transition duration-300 ">
+                  Blogs
+                </li>
+                <li className="text-gray-800 hover:text-primary transition duration-300 ">
+                  About Us
+                </li>
+                <li className="text-gray-800 hover:text-primary transition duration-300 ">
+                  Contact Us
+                </li>
+                
                 <li>
-                  <Button className="bg-primary  text-white">Signup</Button>
+                  <Button className="bg-primary  text-white"><div className="flex items-center gap-1">
+                    <IoPerson /><span>LOGIN</span>
+                  </div></Button>
                 </li>
               </ul>
             </div>

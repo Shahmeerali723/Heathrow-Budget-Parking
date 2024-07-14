@@ -4,13 +4,14 @@ import officeImage from '../public/office.png'; // apni image ko yahan import ka
 
 const AboutUs = () => {
   return (
-    <div className="bg-gray-100 p-4 sm:p-8 flex justify-center items-center">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col lg:flex-row w-full">
+    <div className='sm:container '>
+<div className="bg-gray-100  flex justify-center items-center">
+      <div className="bg-white rounded-lg overflow-hidden flex flex-col lg:flex-row w-full">
         <div className="relative w-full lg:w-1/2 h-64 lg:h-auto">
           <Image src={"/office.png"} className='w-full' layout="fill" objectFit="cover" alt="Office" />
         </div>
         <div className="w-full lg:w-1/2 flex flex-col justify-center p-4 sm:p-8">
-          <h2 className="text-green-500 text-xs sm:text-sm uppercase mb-1 sm:mb-2">About Us</h2>
+          <h2 className="text-primary font-semibold text-xs sm:text-sm uppercase mb-1 sm:mb-2">About Us</h2>
           <h1 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">Lorem Ipsum</h1>
           <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4">Dummy Text Printing</h2>
           <div className='flex p-2 gap-2'>
@@ -28,10 +29,12 @@ const AboutUs = () => {
               </p>
             </div>
           </div>
-          <button className="bg-green-500 w-fit mt-2 text-white px-3 sm:px-4 py-1 sm:py-2 rounded">Read More</button>
+          <button className="bg-primary w-fit mt-2 text-white px-3 sm:px-4 py-1 sm:py-2 rounded">Read More</button>
         </div>
       </div>
     </div>
+    </div>
+    
   );
 };
 

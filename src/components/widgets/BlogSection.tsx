@@ -39,9 +39,9 @@ const BlogSection = () => {
     return (
         <div className='sm:container p-2'>
 
-            <h2 className='uppercase text-xl sm:text-2xl md:text-5xl font-bold text-center'>blog Section</h2>
+            <h2 className='uppercase text-2xl sm:text-4xl md:text-5xl font-bold text-center'>blog Section</h2>
             <p className='text-xs sm:text-lg text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-            <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3'>
+            <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-4'>
                 {cardData.map((item:any, index:any)=>{
 
                    return <BlogCard key={index} {...item}/>

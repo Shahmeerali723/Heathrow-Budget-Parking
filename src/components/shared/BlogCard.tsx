@@ -41,12 +41,12 @@ const BlogCard: React.FC<CardProps> = ({ date, rating, title, description, image
           </div>
         </div>
         <h3 className="text-lg font-semibold mb-2">{title}</h3>
-        <p className="text-gray-700 text-sm mb-4">
+        <p className="text-gray-700 text-xs sm:text-sm mb-4">
           {description}
         </p>
         <div className='flex w-full justify-center items-center' >
 
-        <button className="bg-primary  text-white py-2 px-4 rounded-md">
+        <button className="bg-primary text-sm  text-white py-2 px-4 rounded-md">
           {buttonText}
         </button>
         </div>
