@@ -96,21 +96,24 @@ const Navbar = () => {
           <nav className="hidden lg:block ">
             <ul className="flex items-center gap-7">
               <li className="text-gray-800 hover:text-primary transition duration-300">
-                <Link href={"/"}> Home</Link>
-              </li>
-              <li>
-                <NavDropDown data={data.airportRuns} />
-              </li>
-              <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                Blogs
-              </li>
-              <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                About Us
-              </li>
-              <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                Contact Us
-              </li>
-              
+                  <Link href={"/"}> Home</Link>
+                </li>
+                <li className="text-gray-800 hover:text-primary transition duration-300">
+                  <NavDropDown data={data.airportRuns} />
+                </li>
+                <li className="text-gray-800 hover:text-primary transition duration-300 ">
+                  
+                  <Link href={"/blogs"}> Blogs</Link>
+                </li>
+                <li className="text-gray-800 hover:text-primary transition duration-300 ">
+
+                  <Link href={"/about"}> About Us</Link>
+                </li>
+                <li className="text-gray-800 hover:text-primary transition duration-300 ">
+
+                  <Link href={"/contact"}> Contact Us</Link>
+                </li>
+
               <li>
                 <Button className="bg-primary  lg:block text-white flex ">
                   <div className="flex items-center gap-1">
@@ -136,18 +139,18 @@ const Navbar = () => {
                   <NavDropDown data={data.airportRuns} />
                 </li>
                 <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                  Special Offer
+                  
+                  <Link href={"/blogs"}> Blogs</Link>
                 </li>
                 <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                  Blogs
+
+                  <Link href={"/about"}> About Us</Link>
                 </li>
                 <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                  About Us
+
+                  <Link href={"/contact"}> Contact Us</Link>
                 </li>
-                <li className="text-gray-800 hover:text-primary transition duration-300 ">
-                  Contact Us
-                </li>
-                
+
                 <li>
                   <Button className="bg-primary  text-white"><div className="flex items-center gap-1">
                     <IoPerson /><span>LOGIN</span>

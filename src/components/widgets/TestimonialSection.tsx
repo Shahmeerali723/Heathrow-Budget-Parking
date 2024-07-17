@@ -3,10 +3,10 @@ import TestimonialCard from '../shared/TestimonialCard'
 
 const TestimonialSection = () => {
   return (
-    <div className='sm:container w-full p-2'>
+    <div className='sm:container w-full py-[50px] space-y-[20px]'>
 
-        <div className='text-center flex flex-col gap-2 mb-5'>
-            <h2 className='text-3xl sm:text-5xl font-semibold '>
+        <div className='md:w-[60%] mx-auto sm:w-[85%] w-full space-y-[8px] text-center '>
+            <h2 className='text-3xl font-bold mb-2 sm:text-5xl '>
             Testimonials
             </h2>
             <p className='text-xs sm:text-sm md:text-lg'>

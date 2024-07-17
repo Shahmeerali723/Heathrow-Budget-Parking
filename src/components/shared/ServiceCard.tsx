@@ -10,10 +10,10 @@ const ServiceCard = ({...props}) => {
         <div className='w-fit p-3  sm:p-4  bg-white rounded-full shadow-md shadow-primary text-primary '>
           <Image src={data?.image || "/park.png"} alt='' width={40} height={100}/>
         </div>
-        <h3 className='text-lg sm:text-xl font-semibold'>
+        <h3 className='text-lg sm:text-xl font-medium'>
             {data?.title || "Best Price Guarantee"}
         </h3>
-        <p className='text-xs sm:text-sm md:text-lg '>{data?.desc || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor voluptas dignissimos ."}</p>
+        <p className='text-xs sm:text-sm md:text-[16px] '>{data?.desc || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor voluptas dignissimos ."}</p>
     </div>
   )
 }

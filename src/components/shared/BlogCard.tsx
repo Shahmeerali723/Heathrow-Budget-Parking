@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 interface CardProps {
@@ -29,7 +30,7 @@ const BlogCard: React.FC<CardProps> = ({ date, rating, title, description, image
 
   return (
     <div className="w-full rounded-lg overflow-hidden shadow-lg bg-white">
-      <img className="w-full" src={imageUrl} alt="Card Image" />
+      <Image width={1000} height={100} className="w-full" src={imageUrl} alt="Card Image" />
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-gray-600 text-sm">{date}</span>

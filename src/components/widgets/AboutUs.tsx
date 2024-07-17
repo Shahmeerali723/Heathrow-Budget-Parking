@@ -5,15 +5,15 @@ import officeImage from '../public/office.png'; // apni image ko yahan import ka
 const AboutUs = () => {
   return (
     <div className='sm:container '>
-<div className="bg-gray-100  flex justify-center items-center">
-      <div className="bg-white rounded-lg overflow-hidden flex flex-col lg:flex-row w-full">
-        <div className="relative w-full lg:w-1/2 h-64 lg:h-auto">
-          <Image src={"/office.png"} className='w-full' layout="fill" objectFit="cover" alt="Office" />
+<div className=" container  flex justify-center items-center">
+      <div className="bg-white rounded-xl overflow-hidden flex flex-col lg:flex-row w-full">
+        <div className="relative w-full lg:w-1/2 h-auto">
+          <Image src={"/office.png"} className='w-full rounded-xl' layout="fill" objectFit="cover" alt="Office" />
         </div>
-        <div className="w-full lg:w-1/2 flex flex-col justify-center p-4 sm:p-8">
-          <h2 className="text-primary font-semibold text-xs sm:text-sm uppercase mb-1 sm:mb-2">About Us</h2>
-          <h1 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">Lorem Ipsum</h1>
-          <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4">Dummy Text Printing</h2>
+        <div className="w-full lg:w-1/2 flex flex-col justify-center p-4 sm:p-8 space-y-[20px]">
+          <h2 className="text-primary text-xs sm:text-sm md:text-[24px] uppercase ">About Us</h2>
+          <h1 className="text-xl sm:text-2xl md:text-[40px] font-bold ">Lorem Ipsum</h1>
+          <h2 className="text-lg sm:text-xl md:text-[36px] font-medium ">Dummy Text Printing</h2>
           <div className='flex p-2 gap-2'>
             <div className='flex flex-col justify-between items-center'>
               <div className='w-2 h-2 sm:w-3 sm:h-3 bg-black rounded-full'></div>

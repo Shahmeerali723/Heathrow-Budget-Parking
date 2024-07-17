@@ -39,10 +39,10 @@ const OurServiceSection = () => {
 
 
   return (
-    <div className='sm:container w-full p-2 flex flex-col gap-4'>
+    <div className='sm:container w-full p-[50px] space-y-[20px]'>
         
         <div>
-            <h2 className='text-3xl text-center font-semibold sm:text-5xl md:text-6xl'>
+            <h2 className='text-3xl font-bold mb-2 sm:text-5xl text-center'>
                 Our Service
             </h2>
         </div>
