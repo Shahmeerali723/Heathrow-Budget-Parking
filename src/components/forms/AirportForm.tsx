@@ -4,11 +4,13 @@ import InputComp from '../shared/InputComp';
 import { Button } from '../ui/button';
 import DateTimeInput from '../shared/DateTimeInput';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 
 interface FormData {
   firstName: string;
   lastName: string;
   email: string;
+  terminal:string;
   message: string;
   airport: string;
   PickDate: string;
@@ -19,10 +21,24 @@ interface FormData {
 }
 
 const AirportForm = () => {
+
+  const router = useRouter()
+
+
+  
+
+
+  
+
+
+
+
+
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
+    terminal : "",
     message: "",
     airport: "",
     PickDate: "",
@@ -32,9 +48,13 @@ const AirportForm = () => {
     PromoCode: ""
   });
 
+
+  
+  
+
   const airports = [
     // { name: "Gatwick Airport",  },
-    { name: "Heathrow Airport",  },
+    { name: "Heathrow Airport", value:"HeathrowAirport" },
     // { name: "Birmingham Airport", },
     // { name: "Manchester Airport", },
     // { name: "Stansted Airport", },
@@ -51,8 +71,30 @@ const AirportForm = () => {
       ...formData,
       [name]: value,
     });
-    console.log(formData);
     
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // Send data to Google Sheets
+
+    if(!formData.terminal&&
+      !formData.airport&&
+      !formData.PickDate&&
+      !formData.PickTime&&
+      !formData.DropDate&&
+      !formData.DropTime){
+        alert("Please Fill booking feilds")
+        return
+      }
+
+
+    localStorage.setItem("userdata",(JSON.stringify(formData)))
+    router.push('/quote')
+    
+
+
+
   };
 
   return (
@@ -72,17 +114,17 @@ const AirportForm = () => {
 
 <div className='container'>
 
+<form   onSubmit={handleSubmit}>
       <div className='grid grid-cols-12 gap-3 container bg-white rounded-3xl shadow-lg p-3 sm:px-8 sm:p-6 '>
-        <select name="airport" className='w-full text-gray-500 text-xs sm:text-sm p-2 sm:p-3 border-gray-200 border rounded-md col-span-12 sm:col-span-6' onChange={handleChange}>
-          <option>Airport</option>
-          {airports.map((item, index)=>{
-            return <option key={index} value={item?.name}>{item?.name}</option>
-          })}
+        <select  name="airport" className='w-full text-gray-500 text-xs sm:text-sm p-2 sm:p-3 border-gray-200 border rounded-md col-span-12 sm:col-span-6' onChange={handleChange}>
+          <option>Select</option>
+          <option value="HeathrowAirport">Heathrow Airport</option>
           
         </select>
         <select name="terminal" className='w-full text-gray-500 text-xs sm:text-sm p-2 sm:p-3 border-gray-200 border rounded-md col-span-12 sm:col-span-6' onChange={handleChange}>
-          <option className='text-gray-500'>Terminal</option>
+          
           {/* <option value="terminal1">terminal1</option> */}
+          <option>Select</option>
           <option value="terminal2">Terminal 2</option>
           <option value="terminal3">Terminal 3</option>
           <option value="terminal4">Terminal 4</option>
@@ -139,14 +181,15 @@ const AirportForm = () => {
             />
           </div>
           <div className='  flex justify-center'>
-            <Button className='bg-primary sm:px-20'>
-              <Link href={'/quote'}>
+            <Button type='submit' className='bg-primary sm:px-20'>
+              {/* <Link href={'/quote'}> */}
               Get Code
-              </Link>
+              {/* </Link> */}
             </Button>
           </div>
         </div>
       </div>
+      </form>
 </div>
     </div>
   );

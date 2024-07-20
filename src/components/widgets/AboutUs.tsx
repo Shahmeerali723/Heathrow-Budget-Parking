@@ -6,9 +6,9 @@ const AboutUs = () => {
   return (
     <div className='sm:container '>
 <div className=" container  flex justify-center items-center">
-      <div className="bg-white rounded-xl overflow-hidden flex flex-col lg:flex-row w-full">
+      <div className="bg-white rounded-xl  flex flex-col lg:flex-row w-full">
         <div className="relative w-full lg:w-1/2 h-auto">
-          <Image src={"/office.png"} className='w-full rounded-xl' layout="fill" objectFit="cover" alt="Office" />
+          <Image src={"/office.png"} className='w-full rounded-xl' height={100} width={100}  objectFit="cover" alt="Office" />
         </div>
         <div className="w-full lg:w-1/2 flex flex-col justify-center p-4 sm:p-8 space-y-[20px]">
           <h2 className="text-primary text-xs sm:text-sm md:text-[24px] uppercase ">About Us</h2>

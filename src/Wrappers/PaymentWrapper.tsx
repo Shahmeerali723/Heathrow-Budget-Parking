@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaPlusCircle, FaTrashAlt } from "react-icons/fa";
 
 
@@ -115,6 +115,41 @@ const PaymentDetails = ({ formData, setFormData }: any) => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const onsubmit = async ()=>{
+
+    const localStorageData = JSON.parse(localStorage.getItem('userdata') || '{}');
+  
+    const formPayload = {
+      ...formData,
+      ...localStorageData
+    };
+
+
+    console.log(formPayload);
+
+    try {
+      const response = await fetch('https://docs.google.com/forms/d/e/1FAIpQLSdsbR2ZYXC4ptKh2CHrjI0duBybTGgNSdEyasaYDrPseTgjqQ/viewform', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(formPayload).toString(),
+      });
+  
+      if (response.ok) {
+        console.log('Form submitted successfully!');
+      } else {
+        console.error('Error submitting form:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+    
+
+  }
+
+
+
   return (
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-10">
       <div className="flex flex-col justify-between">
@@ -134,11 +169,11 @@ const PaymentDetails = ({ formData, setFormData }: any) => {
             Is Simply Dummy Text Of The Printing And Typesetting Industry.
           </label>
           <button className="bg-primary text-white py-4 px-4 rounded w-full">Pay For Card</button>
-          <button className="bg-white border border-primary text-primary py-4 px-4 rounded w-full">Pay Pal</button>
+          <button className="bg-white border border-primary text-primary py-4 px-4 rounded w-full" onClick={onsubmit}>Pay Pal</button>
         </div>
       </div>
       <div className="relative p-4 shadow-[0_3px_15px_3px_rgba(0,0,0,0.2)] rounded-lg bg-cover bg-no-repeat bg-center">
-        <div className="absolute inset-0 bg-[url('/ICON.png')] bg-cover bg-no-repeat bg-center opacity-10 rounded-lg"></div>
+        <div className="absolute inset-0 bg-[url('/icon.png')] bg-cover bg-no-repeat bg-center opacity-10 rounded-lg"></div>
         <div className="relative z-10 space-y-2">
           <h2 className="text-xl font-semibold text-center">Booking Details</h2>
           <p className=" mb-4 sm:text-[15px] font-medium text-xs text-center">
@@ -216,6 +251,15 @@ const PaymentWrapper = () => {
     paymentOption1: false,
     paymentOption2: false,
   });
+
+  useEffect(() => {
+    const localStorageData = JSON.parse(localStorage.getItem('userdata') || '{}');
+  
+    setFormData((prevData) => ({
+      ...prevData,
+      ...localStorageData
+    }));
+  }, []);
 
   const addVehicle = () => {
     setFormData({ ...formData, vehicles: [...formData.vehicles, { make: '', model: '', color: '', regNo: '' }] });
