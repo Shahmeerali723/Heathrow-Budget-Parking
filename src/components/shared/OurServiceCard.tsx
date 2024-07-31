@@ -9,10 +9,10 @@ const OurServiceCard = ({...props}) => {
     return (
         <div
 
-            className={`rounded-2xl w-full  relative  border-0 p-0   `}
+            className={`rounded-3xl w-full  relative  border-0 p-0   `}
 
         >
-            <div className={`absolute bottom-0 flex flex-col justify-end text-white left-0 right-0 w-full object-cover h-full bg-black bg-opacity-30 rounded-lg`}>
+            <div className={`absolute bottom-0 flex flex-col justify-end text-white left-0 right-0 w-full object-cover h-full bg-black bg-opacity-25 rounded-lg`}>
                 <div className="relative p-4 z-10">
                     <h2 className="text-lg font-bold mb-2 sm:text-xl">{data?.title || "Meet And Greet"}</h2>
                     <p className="text-xs sm:text-sm">

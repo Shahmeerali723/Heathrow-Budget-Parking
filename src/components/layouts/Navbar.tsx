@@ -101,10 +101,10 @@ const Navbar = () => {
                 <li className="text-gray-800 hover:text-primary transition duration-300">
                   <NavDropDown data={data.airportRuns} />
                 </li>
-                <li className="text-gray-800 hover:text-primary transition duration-300 ">
+                {/* <li className="text-gray-800 hover:text-primary transition duration-300 ">
                   
                   <Link href={"/blogs"}> Blogs</Link>
-                </li>
+                </li> */}
                 <li className="text-gray-800 hover:text-primary transition duration-300 ">
 
                   <Link href={"/about"}> About Us</Link>
@@ -138,10 +138,10 @@ const Navbar = () => {
                 <li className="text-gray-800 hover:text-primary transition duration-300">
                   <NavDropDown data={data.airportRuns} />
                 </li>
-                <li className="text-gray-800 hover:text-primary transition duration-300 ">
+                {/* <li className="text-gray-800 hover:text-primary transition duration-300 ">
                   
                   <Link href={"/blogs"}> Blogs</Link>
-                </li>
+                </li> */}
                 <li className="text-gray-800 hover:text-primary transition duration-300 ">
 
                   <Link href={"/about"}> About Us</Link>

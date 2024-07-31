@@ -22,7 +22,7 @@ const ContactSection = () => {
                                     Email
                                 </h4>
                                 <h5>
-                                    Info@heathrowbudgetparking.com
+                                    info@heathrowbudgetparking.co.uk
                                 </h5>
                             </div>
 

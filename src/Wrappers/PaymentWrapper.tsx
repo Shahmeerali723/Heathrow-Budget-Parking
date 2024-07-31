@@ -108,16 +108,25 @@ const ContactDetails = ({ formData, setFormData }: any) => {
 // VehicleDetails Component
 
 
+
 // PaymentDetails Component
 const PaymentDetails = ({ formData, setFormData }: any) => {
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  
+  const [localStorageData, setLocalStorageData] = useState<any | null>(null);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Check if we're running in the browser
+      const data = localStorage.getItem("userdata");
+      setLocalStorageData(data ? JSON.parse(data) : null);
+    }
+  }, []);
   const onsubmit = async ()=>{
 
-    const localStorageData = JSON.parse(localStorage.getItem('userdata') || '{}');
   
     const formPayload = {
       ...formData,
@@ -127,23 +136,9 @@ const PaymentDetails = ({ formData, setFormData }: any) => {
 
     console.log(formPayload);
 
-    try {
-      const response = await fetch('https://docs.google.com/forms/d/e/1FAIpQLSdsbR2ZYXC4ptKh2CHrjI0duBybTGgNSdEyasaYDrPseTgjqQ/viewform', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(formPayload).toString(),
-      });
-  
-      if (response.ok) {
-        console.log('Form submitted successfully!');
-      } else {
-        console.error('Error submitting form:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
+
+
+
     
 
   }
@@ -182,23 +177,23 @@ const PaymentDetails = ({ formData, setFormData }: any) => {
           <div className="space-y-2">
             <div className="flex justify-between">
               <span className="text-[20px] font-bold">Drop Off</span>
-              <span>12/07/2024 At 13:00</span>
+              <span>{localStorageData?.DropDate ||"12/07/2024"} At {localStorageData?.DropTime||"13:00"}</span>
             </div>
             <hr />
             <div className="flex justify-between">
               <span className="text-[20px] font-bold">Pick Up</span>
-              <span>18/07/2024 At 14:00</span>
+              <span>{localStorageData?.PickDate ||"12/07/2024"} At {localStorageData?.PickTime||"13:00"}</span>
             </div>
             <hr />
             <div className="flex justify-between">
               <span className="text-[20px] font-bold">Airport</span>
-              <span>Heathrow</span>
+              <span>{localStorageData?.airport|| "Heathrow"}</span>
             </div>
           </div>
           <div className="mt-4 border-t pt-4 px-6">
             <div className="flex justify-between">
               <span>Quote Amount:</span>
-              <span>$146.00</span>
+              <span>{localStorageData?.price || "$146.00"}</span>
             </div>
             <div className="flex justify-between">
               <span>Discount Amount:</span>
@@ -206,7 +201,7 @@ const PaymentDetails = ({ formData, setFormData }: any) => {
             </div>
             <div className="flex justify-between">
               <span>Booking Charges:</span>
-              <span>$1.95</span>
+              <span>$0.00</span>
             </div>
             <div className="flex justify-between">
               <span>Sms Charges:</span>
@@ -216,7 +211,7 @@ const PaymentDetails = ({ formData, setFormData }: any) => {
           <hr />
           <div className="flex justify-between text-xl font-semibold mt-4 py-6">
             <span className="text-[30px] font-bold">Total:</span>
-            <span className="text-[30px] font-bold">$147.95</span>
+            <span className="text-[30px] font-bold">{localStorageData?.price}</span>
           </div>
         </div>
       </div>
@@ -225,15 +220,6 @@ const PaymentDetails = ({ formData, setFormData }: any) => {
   );
 };
 
-// Confirmation Component
-const Confirmation = ({ formData }: any) => {
-  return (
-    <div className="p-4">
-      <h2 className="text-lg font-semibold mb-4">Confirmation</h2>
-      <pre className="bg-gray-100 p-4 rounded">{JSON.stringify(formData, null, 2)}</pre>
-    </div>
-  );
-};
 
 // Main Page Component
 const PaymentWrapper = () => {
@@ -253,7 +239,10 @@ const PaymentWrapper = () => {
   });
 
   useEffect(() => {
-    const localStorageData = JSON.parse(localStorage.getItem('userdata') || '{}');
+    const localStorageData : any | null = (() => {
+      const data = localStorage.getItem("userdata");
+      return data ? JSON.parse(data) : null;
+    })();
   
     setFormData((prevData) => ({
       ...prevData,
@@ -261,19 +250,8 @@ const PaymentWrapper = () => {
     }));
   }, []);
 
-  const addVehicle = () => {
-    setFormData({ ...formData, vehicles: [...formData.vehicles, { make: '', model: '', color: '', regNo: '' }] });
-  };
-  const removeVehicle = (index: number) => {
-    const newVehicles = formData.vehicles.filter((_, i) => i !== index);
-    setFormData({ ...formData, vehicles: newVehicles });
-  };
+ 
 
-
-  const [step, setStep] = useState(0);
-
-  const nextStep = () => setStep((prev) => prev + 1);
-  const prevStep = () => setStep((prev) => prev - 1);
 
   const handleVehicleChange = (e: any, index: number) => {
     const { name, value } = e.target;
@@ -283,9 +261,20 @@ const PaymentWrapper = () => {
   };
 
 
+
+
   const VehicleDetails = ({ vehicle, index, handleVehicleChange }: any) => {
 
 
+    const addVehicle = () => {
+      setFormData({ ...formData, vehicles: [...formData.vehicles, { make: '', model: '', color: '', regNo: '' }] });
+    };
+    const removeVehicle = (index: number) => {
+      const newVehicles = formData.vehicles.filter((_, i) => i !== index);
+      setFormData({ ...formData, vehicles: newVehicles });
+    };
+  
+  
     return (
       <div className="p-4 shadow-[0_3px_15px_3px_rgba(0,0,0,0.2)] rounded-lg">
         <div className='flex justify-between items-center mb-4'>
@@ -302,7 +291,7 @@ const PaymentWrapper = () => {
               </button>
             )}
           </div>
-
+  
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -358,12 +347,13 @@ const PaymentWrapper = () => {
 
 
 
-  const steps = [
-    <ContactDetails key="step1" formData={formData} setFormData={setFormData} />,
-    <VehicleDetails key="step2" formData={formData} setFormData={setFormData} />,
-    <PaymentDetails key="step3" formData={formData} setFormData={setFormData} />,
-    <Confirmation key="step4" formData={formData} />,
-  ];
+
+
+
+
+
+
+  
 
   return (
     <div className='sm:container p-2 sm:p-10 flex flex-col gap-4'>

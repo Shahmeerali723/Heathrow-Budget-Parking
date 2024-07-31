@@ -80,13 +80,19 @@ const Pricing = () => {
       const fetchData = async () => {
         try {
           console.log("Fetching data from /api/sheets...");
-          const response = await fetch("/api/sheets");
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          const result = await response.json();
-          console.log("Data fetched successfully:", result.data);
-          setData(result.data);
+          const apiKey = 'AIzaSyDsvDwOgA6lLTMTgbnjG-KPzS5zZn6Iomw';
+          const spreadsheetId = '1-HiuVw5OGBJgg-dHyr76tmuZ5cpzXHFA0PKqzxuSnIA';
+          const range = 'Sheet1!A1:G31'; // Adjust the range as needed
+
+          const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+
+          const response = await fetch(url);
+          const data = await response.json()
+
+          const result = data?.values
+
+          console.log("Data fetched successfully:", result);
+          setData(result);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -123,7 +129,7 @@ const Pricing = () => {
   const startDate = new Date(userData?.PickDate);
   const endDate = new Date(userData?.DropDate);
   const totalDays = calculateDaysBetweenDates(startDate, endDate);
-  const PackagePrice = calculatePackagePrices(totalDays - 1);
+  const PackagePrice = calculatePackagePrices(totalDays);
 
   const pricingData = [
     {

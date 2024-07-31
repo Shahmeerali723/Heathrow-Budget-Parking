@@ -7,16 +7,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 
 interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
   terminal:string;
-  message: string;
   airport: string;
   PickDate: string;
   PickTime: string;
   DropDate: string;
   DropTime: string;
+  DropOffTerminal: string;
   PromoCode: string;
 }
 
@@ -35,13 +32,10 @@ const AirportForm = () => {
 
 
   const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
-    email: "",
     terminal : "",
-    message: "",
     airport: "",
     PickDate: "",
+    DropOffTerminal:"",
     PickTime: "",
     DropDate: "",
     DropTime: "",
@@ -117,14 +111,14 @@ const AirportForm = () => {
 <form   onSubmit={handleSubmit}>
       <div className='grid grid-cols-12 gap-3 container bg-white rounded-3xl shadow-lg p-3 sm:px-8 sm:p-6 '>
         <select  name="airport" className='w-full text-gray-500 text-xs sm:text-sm p-2 sm:p-3 border-gray-200 border rounded-md col-span-12 sm:col-span-6' onChange={handleChange}>
-          <option>Select</option>
+          <option>Select Airport</option>
           <option value="HeathrowAirport">Heathrow Airport</option>
           
         </select>
         <select name="terminal" className='w-full text-gray-500 text-xs sm:text-sm p-2 sm:p-3 border-gray-200 border rounded-md col-span-12 sm:col-span-6' onChange={handleChange}>
           
           {/* <option value="terminal1">terminal1</option> */}
-          <option>Select</option>
+          <option>Select Pick Terminal</option>
           <option value="terminal2">Terminal 2</option>
           <option value="terminal3">Terminal 3</option>
           <option value="terminal4">Terminal 4</option>
@@ -170,7 +164,20 @@ const AirportForm = () => {
           />
         </div>
 
-        <div className='col-span-12 items-center grid grid-cols-2 gap-3 sm:mt-2'>
+        <div className='col-span-12 w-full items-center grid grid-cols-2 gap-3 sm:mt-2'>
+
+
+
+        <select name="Dropterminal" className='w-full text-gray-500 text-xs sm:text-sm p-2 sm:p-3 border-gray-200 border rounded-md' onChange={handleChange}>
+          
+          {/* <option value="terminal1">terminal1</option> */}
+          <option>Select Drop Terminal</option>
+          <option value="terminal2">Terminal 2</option>
+          <option value="terminal3">Terminal 3</option>
+          <option value="terminal4">Terminal 4</option>
+          <option value="terminal5">Terminal 5</option>
+        </select>
+
           <div className=' '>
             <InputComp
               placeholder="Promo Code"
@@ -179,15 +186,24 @@ const AirportForm = () => {
               value={formData.PromoCode}
               onChange={handleChange}
             />
+            
           </div>
-          <div className='  flex justify-center'>
+
+          
+         
+
+       
+         
+        </div>
+        <div className='col-span-12 flex justify-center'>
             <Button type='submit' className='bg-primary sm:px-20'>
               {/* <Link href={'/quote'}> */}
               Get Code
               {/* </Link> */}
             </Button>
           </div>
-        </div>
+        
+        
       </div>
       </form>
 </div>

@@ -10,9 +10,9 @@ const OurExpertise = () => {
 
         <div className='sm:container w-full'>
 
-            <div className='grid grid-cols-1 md:grid-cols-2  gap-2 p-4 '>
+            <div className='grid grid-cols-1 md:grid-cols-2  gap-6 p-4 '>
 
-                <div className='flex shadow-lg  gap-5 p-2 rounded-lg items-center '>
+                <div className='flex shadow-lg  gap-5 p-2 rounded-xl items-center '>
                     <div className='  w-fit p-2 text-xl sm:text-5xl rounded-lg text-secondary'>
                         <FaCarAlt/>
                     </div>
@@ -20,7 +20,7 @@ const OurExpertise = () => {
                     dummy text printing
              </h3>
                 </div>
-                <div className='flex shadow-lg  gap-5 p-2 rounded-lg items-center'>
+                <div className='flex shadow-lg  gap-5 p-2 rounded-xl items-center'>
                     <div className='  w-fit p-2 text-xl sm:text-5xl rounded-lg text-secondary'>
                         <ImMeter/>
                     </div>
@@ -28,7 +28,7 @@ const OurExpertise = () => {
                     dummy text printing
              </h3>
                 </div>
-                <div className='flex shadow-lg  gap-5 p-2 rounded-lg items-center'>
+                <div className='flex shadow-lg  gap-5 p-2 rounded-xl items-center'>
                     <div className='  w-fit p-2 text-xl sm:text-5xl rounded-lg text-secondary'>
                         <HiUsers/>
                     </div>
@@ -36,7 +36,7 @@ const OurExpertise = () => {
                     dummy text printing
              </h3>
                 </div>
-                <div className='flex shadow-lg  gap-5 p-2 rounded-lg items-center'>
+                <div className='flex shadow-lg  gap-5 p-2 rounded-xl items-center'>
                     <div className='  w-fit p-2 text-xl sm:text-5xl rounded-lg text-secondary'>
                         <GiCaptainHatProfile/>
                     </div>
