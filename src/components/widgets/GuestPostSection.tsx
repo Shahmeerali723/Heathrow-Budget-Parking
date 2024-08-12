@@ -3,7 +3,7 @@ import React from 'react';
 const GuestPostForm = () => {
   return (
     <div className="flex flex-col md:flex-row py-8 ">
-      <div className="md:w-1/2 mb-8 md:mb-0 flex flex-col justify-center">
+      {/* <div className="md:w-1/2 mb-8 md:mb-0 flex flex-col justify-center">
         <div className='md:w-[80%] sm:text-start text-center'>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Create Guest Post Submission Form?</h1>
           <p className="text-gray-600 sm:text-base text-xs">
@@ -42,7 +42,7 @@ const GuestPostForm = () => {
           <button type="submit" className="w-fit bg-secondary-dark text-white py-2 px-4 rounded hover:bg-secondary-extraDark">Submit</button>
           </div>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 };

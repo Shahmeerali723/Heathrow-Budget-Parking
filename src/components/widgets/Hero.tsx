@@ -16,7 +16,7 @@ const Hero = () => {
             <p className="text-xs sm:text-lg text-white font-plus-jakarta">
               Cabbx is the all-in-one mobility app. Get picked up by a top-rated driver in minutes and enjoy a comfortable ride to wherever you’re going;
             </p>
-            <Button className="bg-primary text-white w-fit p-1 px-5 text-xs sm:tetx-lg">Read More</Button>
+            {/* <Button className="bg-primary text-white w-fit p-1 px-5 text-xs sm:tetx-lg">Read More</Button> */}
           </div>
         </div>
       </div>

@@ -1,58 +1,72 @@
-import React from 'react'
+import React from 'react';
 import BlogCard from '../shared/BlogCard';
 
-
-
 const BlogSection = () => {
-
-
     const cardData = [
         {
-        date: "5/7/2024",
-        rating: 4.5,
-        title: "Lorem Ipsum",
-        description: "Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry's Standard Dummy Text Ever Since The 1500s.",
-        imageUrl: "/blog1.png", // Update this with your image path
-        buttonText: "Read More"
-    },
+            title: "Birmingham airport",
+            imageUrl: "/birmingham-airport.webp",
+        },
         {
-        date: "5/7/2024",
-        rating: 4.5,
-        title: "Lorem Ipsum",
-        description: "Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry's Standard Dummy Text Ever Since The 1500s.",
-        imageUrl: "/blog2.png", // Update this with your image path
-        buttonText: "Read More"
-    },
+            title: "Bristol airport",
+            imageUrl: "/bristol.webp",
+        },
         {
-        date: "5/7/2024",
-        rating: 4.5,
-        title: "Lorem Ipsum",
-        description: "Is Simply Dummy Text Of The Printing And Typesetting Industry. Lorem Ipsum Has Been The Industry's Standard Dummy Text Ever Since The 1500s.",
-        imageUrl: "/blog3.png", // Update this with your image path
-        buttonText: "Read More"
-    },
+            title: "East midlands airports",
+            imageUrl: "/east-midlands-airport.webp",
+        },
+        {
+            title: "Edinburgh Airport",
+            imageUrl: "/edinburgh-airport.webp",
+        },
+        {
+            title: "Gatewick airport",
+            imageUrl: "/gatwick-parking.webp",
+        },
+        {
+            title: "Glasgow airport",
+            imageUrl: "/glasgow.webp",
+        },
+        {
+            title: "Heathrow airport",
+            imageUrl: "/london-heathrow.webp",
+        },
+        {
+            title: "Liverpool airport",
+            imageUrl: "/liverpool-airport.webp",
+        },
+        {
+            title: "luton airport",
+            imageUrl: "/london-luton.webp",
+        },
+        {
+            title: "Manchester Airport",
+            imageUrl: "/manchester.webp",
+        },
+        {
+            title: "southend airport",
+            imageUrl: "/london-southend-airport.webp",
+        },
+        {
+            title: "Standsted airport",
+            imageUrl: "/london-stansted.webp",
+        },
     ];
-
-
-
 
     return (
         <div className='sm:container p-[50px] space-y-[20px]'>
-
-            <div className='md:w-[35%] mx-auto sm:w-[85%] w-full space-y-[6px]'>
-            <h2 className='uppercase text-3xl font-bold mb-2 sm:text-5xl text-center'>blog Section</h2>
-            <p className='text-xs sm:text-lg text-center'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            <div className='md:w-[55%] mx-auto sm:w-[85%] w-full space-y-[6px]'>
+                <h2 className='uppercase text-3xl font-bold mb-2 sm:text-5xl text-center mt-[-200px]'>Where to Find Us</h2>
+                <p className='text-center'>Select your Heathrow terminal, compare parking options, prices, and services across a range of budget-friendly car parks. Don't see the service you need? We're constantly expanding, and new parking options will be available soon to meet your needs. Stay tuned for more additions!</p>
             </div>
             
-            <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-4'>
-                {cardData.map((item:any, index:any)=>{
-
-                   return <BlogCard key={index} {...item}/>
-                })}
+            <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-4'>
+                {cardData.map((item, index) => (
+                    <BlogCard key={index} {...item} />
+                ))}
             </div>
-
         </div>
-    )
+    );
 }
 
-export default BlogSection
+export default BlogSection;

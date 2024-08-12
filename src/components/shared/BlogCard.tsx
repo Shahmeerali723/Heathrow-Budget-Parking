@@ -32,25 +32,7 @@ const BlogCard: React.FC<CardProps> = ({ date, rating, title, description, image
     <div className="w-full rounded-lg overflow-hidden shadow-lg bg-white">
       <Image width={1000} height={100} className="w-full" src={imageUrl} alt="Card Image" />
       <div className="p-4">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-gray-600 text-sm">{date}</span>
-          <div className="flex items-center">
-            <span className="text-gray-600 text-sm mr-1">{rating.toFixed(1)}</span>
-            <div className="flex items-center">
-              {renderStars()}
-            </div>
-          </div>
-        </div>
         <h3 className="text-lg font-semibold mb-2">{title}</h3>
-        <p className="text-gray-700 text-xs sm:text-sm mb-4">
-          {description}
-        </p>
-        <div className='flex w-full justify-center items-center' >
-
-        <button className="bg-primary text-sm  text-white py-2 px-4 rounded-md">
-          {buttonText}
-        </button>
-        </div>
       </div>
     </div>
   );

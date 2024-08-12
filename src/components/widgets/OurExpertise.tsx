@@ -8,7 +8,7 @@ const OurExpertise = () => {
   return (
     <div className='w-full flex items-center'>
 
-        <div className='sm:container w-full'>
+        {/* <div className='sm:container w-full'>
 
             <div className='grid grid-cols-1 md:grid-cols-2  gap-6 p-4 '>
 
@@ -46,7 +46,7 @@ const OurExpertise = () => {
                 </div>
             </div>
 
-        </div>
+        </div> */}
         
     </div>
   )

@@ -1,212 +1,276 @@
 "use client";
 import React, { ChangeEvent, useState } from 'react';
-import InputComp from '../shared/InputComp';
 import { Button } from '../ui/button';
-import DateTimeInput from '../shared/DateTimeInput';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { format, addDays } from "date-fns";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { cn } from '@/lib/utils'; 
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { FaCalendarAlt } from "react-icons/fa"; // Import the calendar icon
 
 interface FormData {
-  terminal:string;
+  terminal: string;
   airport: string;
-  PickDate: string;
+  PickDate: Date | null;
   PickTime: string;
-  DropDate: string;
+  DropDate: Date | null;
   DropTime: string;
-  DropOffTerminal: string;
-  PromoCode: string;
 }
 
+const FormSchema = z.object({
+  PickDate: z.date().nullable().optional(),
+  DropDate: z.date().nullable().optional(),
+  PickTime: z.string().optional(),
+  DropTime: z.string().optional(),
+  airport: z.string().nonempty(),
+  terminal: z.string().optional(),
+});
+
+const formatDate = (date: Date | null) => {
+  if (!date) return '';
+  const dayOfWeek = format(date, 'EEE'); // Get the short name of the day of the week
+  const formattedDate = format(date, "dd/MM/yyyy");
+  return `${dayOfWeek}.${formattedDate}`; // Format as 'Day.DD/MM/YYYY'
+};
+
 const AirportForm = () => {
-
-  const router = useRouter()
-
-
-  
-
-
-  
-
-
-
-
-
-  const [formData, setFormData] = useState<FormData>({
-    terminal : "",
-    airport: "",
-    PickDate: "",
-    DropOffTerminal:"",
-    PickTime: "",
-    DropDate: "",
-    DropTime: "",
-    PromoCode: ""
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      PickDate: null,
+      DropDate: null,
+      PickTime: "",
+      DropTime: "",
+      airport: "",
+      terminal: "",
+    },
   });
 
+  const router = useRouter();
+  const [formData, setFormData] = useState<FormData>({
+    terminal: "",
+    airport: "",
+    PickDate: null,
+    PickTime: "",
+    DropDate: null,
+    DropTime: "",
+  });
 
-  
-  
-
-  const airports = [
-    // { name: "Gatwick Airport",  },
-    { name: "Heathrow Airport", value:"HeathrowAirport" },
-    // { name: "Birmingham Airport", },
-    // { name: "Manchester Airport", },
-    // { name: "Stansted Airport", },
-    // { name: "Luton Airport",  },
-    // { name: "Bristol Airport",  },
-    // { name: "Edinburgh Airport",},
-    // { name: "Glasgow Airport", },
-    // { name: "London City Airport",  },
-  ]
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
-    
+  };
+
+  const handleDateChange = (date: Date | null, field: 'PickDate' | 'DropDate') => {
+    if (field === 'PickDate') {
+      setFormData((prevData) => ({
+        ...prevData,
+        PickDate: date,
+        DropDate: addDays(date ?? new Date(), 4),
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        DropDate: date,
+      }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Send data to Google Sheets
-
-    if(!formData.terminal&&
-      !formData.airport&&
-      !formData.PickDate&&
-      !formData.PickTime&&
-      !formData.DropDate&&
-      !formData.DropTime){
-        alert("Please Fill booking feilds")
-        return
-      }
-
-
-    localStorage.setItem("userdata",(JSON.stringify(formData)))
-    router.push('/quote')
     
+    if (!formData.airport || !formData.PickDate || !formData.PickTime || !formData.DropDate || !formData.DropTime) {
+      alert("Please fill all required fields");
+      return;
+    }
 
-
-
+    localStorage.setItem("userdata", JSON.stringify(formData));
+    router.push('/quote');
   };
 
   return (
-    <div className=' w-full sm:container   sm:mt-[-230px] md:mt-[-290px] lg:mt-[-370px] xl:mt-[-400px] z-10'>
-      <div className='w-fit mx-auto bg-white rounded-t-3xl p-4 px-6'>
-        {/* <div className='grid grid-cols-1 sm:grid-cols-4 gap-3 '>
+    <div className='w-full sm:container z-10 mt-[-310px]'>
+      <div className='w-[90%] mx-auto bg-white rounded-t-3xl p-4 px-6'>
+        <div className='grid grid-cols-1 sm:grid-cols-4 gap-3'>
           <Button className='outline-primary border-primary text-xs sm:text-sm'>Airport Parking</Button>
           <Button className='outline-primary text-primary border-primary text-xs sm:text-sm' variant={"outline"}>Hotel & Parking</Button>
           <Button className='outline-primary text-primary border-primary text-xs sm:text-sm' variant={"outline"}>Lounge</Button>
           <Button className='outline-primary text-primary border-primary text-xs sm:text-sm' variant={"outline"}>Airport Transfer</Button>
-        </div> */}
-        <div className='grid grid-cols-1 '>
-          <Button className='outline-primary border-primary w-fit px-6 mx-auto text-xs sm:text-sm'>Airport Parking</Button>
-          
         </div>
       </div>
 
-<div className='container'>
+      <div className='container'>
+        <form onSubmit={handleSubmit}>
+          <div className='grid grid-cols-2 sm:grid-cols-3 gap-4 container bg-white rounded-3xl shadow-lg p-9'>
 
-<form   onSubmit={handleSubmit}>
-      <div className='grid grid-cols-12 gap-3 container bg-white rounded-3xl shadow-lg p-3 sm:px-8 sm:p-6 '>
-        <select  name="airport" className='w-full text-gray-500 text-xs sm:text-sm p-2 sm:p-3 border-gray-200 border rounded-md col-span-12 sm:col-span-6' onChange={handleChange}>
-          <option>Select Airport</option>
-          <option value="HeathrowAirport">Heathrow Airport</option>
-          
-        </select>
-        <select name="terminal" className='w-full text-gray-500 text-xs sm:text-sm p-2 sm:p-3 border-gray-200 border rounded-md col-span-12 sm:col-span-6' onChange={handleChange}>
-          
-          {/* <option value="terminal1">terminal1</option> */}
-          <option>Select Pick Terminal</option>
-          <option value="terminal2">Terminal 2</option>
-          <option value="terminal3">Terminal 3</option>
-          <option value="terminal4">Terminal 4</option>
-          <option value="terminal5">Terminal 5</option>
-        </select>
+            {/* Airport Dropdown */}
+            <div className='flex flex-col'>
+              <label className='text-gray-700 font-semibold mb-2 ml-[20px]'>Airport</label>
+              <select  
+                name="airport" 
+                className="w-[160px] py-2 px-4 bg-white rounded-lg"
+                value={formData.airport}
+                onChange={handleChange}
+              >
+                <option>Select Airport</option>
+                <option value="HeathrowAirport">Heathrow Airport</option>
+              </select>
+            </div>
 
-        <div className='col-span-12 sm:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:mt-2'>
-          <DateTimeInput
-            type="time"
-            placeholder={"Pick Up Time"}
-            classes={{ icon: "bg-black text-white", div: "border-[#999999] bg-white rounded-lg" }}
-            name="PickTime"
-            value={formData.PickTime}
-            onChange={handleChange}
-          />
-          <DateTimeInput
-            type="date"
-            placeholder={"Pick Up Date"}
-            classes={{ icon: "bg-black text-white", div: "border-[#999999] bg-white rounded-lg" }}
-            name="PickDate"
-            value={formData.PickDate}
-            onChange={handleChange}
-          />
-        </div>
+            {/* Date From */}
+            <div className='flex flex-col ml-[-145px]'>
+              <label className='text-gray-700 font-semibold mb-2'>Date From</label>
+              <div className='flex items-center space-x-2'>
+                <Form {...form}>
+                  <FormField
+                    control={form.control}
+                    name="PickDate"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col">
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <FormControl>
+                              <Button
+                                variant={"outline"}
+                                className={cn(
+                                  "w-[180px] pl-3 text-left font-normal",
+                                  !field.value && "text-muted-foreground"
+                                )}
+                              >
+                                <FaCalendarAlt className="mr-2 text-gray-500" /> {/* Calendar icon */}
+                                {field.value ? (
+                                  formatDate(field.value)
+                                ) : (
+                                  <span>Pick a date</span>
+                                )}
+                              </Button>
+                            </FormControl>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0" align="start">
+                            <Calendar
+                              className='bg-white-500'
+                              mode="single"
+                              selected={formData.PickDate}
+                              onSelect={(date) => {
+                                field.onChange(date);
+                                handleDateChange(date, 'PickDate');
+                              }}
+                              disabled={(date) =>
+                                date > new Date() || date < new Date("1900-01-01")
+                              }
+                              initialFocus
+                            />
+                          </PopoverContent>
+                        </Popover>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </Form>
 
-        <div className='col-span-12 sm:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:mt-2'>
-          
-          <DateTimeInput
-          placeholder={"Drop Off Time"}
-            type="time"
-            classes={{ icon: "bg-black text-white", div: "border-[#999999] bg-white rounded-lg" }}
-            name="DropTime"
-            value={formData.DropTime}
-            onChange={handleChange}
-          />
-          <DateTimeInput
-          placeholder={"Drop Off Date"}
-            type="date"
-            classes={{ icon: "bg-black text-white", div: "border-[#999999] bg-white rounded-lg" }}
-            name="DropDate"
-            value={formData.DropDate}
-            onChange={handleChange}
-          />
-        </div>
+                <input
+                  type="time"
+                  name="PickTime"
+                  className="w-[32%] ml[-40px] py-2 px-4 bg-white rounded-lg focus:outline-none"
+                  value={formData.PickTime}
+                  onChange={handleChange}
+                  pattern="[0-9]{2}:[0-9]{2}" // Ensure the time format is 24-hour without AM/PM
+                />
+              </div>
+            </div>
 
-        <div className='col-span-12 w-full items-center grid grid-cols-2 gap-3 sm:mt-2'>
+            {/* Date To */}
+            <div className='flex flex-col ml-[-127px]'>
+              <label className='text-gray-700 font-semibold mb-2'>Date To</label>
+              <div className='flex items-center space-x-2'>
+                <Form {...form}>
+                  <FormField
+                    control={form.control}
+                    name="DropDate"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col">
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <FormControl>
+                              <Button
+                                variant={"outline"}
+                                className={cn(
+                                  "w-[180px] pl-3 text-left font-normal",
+                                  !field.value && "text-muted-foreground"
+                                )}
+                              >
+                                <FaCalendarAlt className="mr-2 text-gray-500" /> {/* Calendar icon */}
+                                {formData.DropDate ? (
+                                  formatDate(formData.DropDate)
+                                ) : (
+                                  <span>Pick a date</span>
+                                )}
+                              </Button>
+                            </FormControl>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0" align="start">
+                            <Calendar
+                              className='bg-white-500'
+                              mode="single"
+                              selected={formData.DropDate}
+                              onSelect={(date) => {
+                                field.onChange(date);
+                                handleDateChange(date, 'DropDate');
+                              }}
+                              disabled={(date) =>
+                                date > new Date() || date < new Date("1900-01-01")
+                              }
+                              initialFocus
+                            />
+                          </PopoverContent>
+                        </Popover>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </Form>
 
+                <input
+                  type="time"
+                  name="DropTime"
+                  className="w-[32%] py-2 px-4 bg-white rounded-lg focus:outline-none"
+                  value={formData.DropTime}
+                  onChange={handleChange}
+                  pattern="[0-9]{2}:[0-9]{2}" // Ensure the time format is 24-hour without AM/PM
+                />
+              </div>
+            </div>
 
+            {/* Submit Button */}
+            <div className='flex justify-center mt-6'>
+              <Button 
+                type='submit' 
+                className='bg-[#193D1C] text-white text-sm py-2 px-4 rounded-lg shadow-md hover:bg-[#193D1C] w-[50%] ml-[485%] mt-[-80px]'
+              >
+                Search Parking Space
+              </Button>
+            </div>
 
-        <select name="Dropterminal" className='w-full text-gray-500 text-xs sm:text-sm p-2 sm:p-3 border-gray-200 border rounded-md' onChange={handleChange}>
-          
-          {/* <option value="terminal1">terminal1</option> */}
-          <option>Select Drop Terminal</option>
-          <option value="terminal2">Terminal 2</option>
-          <option value="terminal3">Terminal 3</option>
-          <option value="terminal4">Terminal 4</option>
-          <option value="terminal5">Terminal 5</option>
-        </select>
-
-          <div className=' '>
-            <InputComp
-              placeholder="Promo Code"
-              classes={{ icon: "bg-black text-white", div: "border-[#999999] bg-white rounded-lg" }}
-              name="PromoCode"
-              value={formData.PromoCode}
-              onChange={handleChange}
-            />
-            
           </div>
-
-          
-         
-
-       
-         
-        </div>
-        <div className='col-span-12 flex justify-center'>
-            <Button type='submit' className='bg-primary sm:px-20'>
-              {/* <Link href={'/quote'}> */}
-              Get Code
-              {/* </Link> */}
-            </Button>
-          </div>
-        
-        
+        </form>
       </div>
-      </form>
-</div>
     </div>
   );
 };

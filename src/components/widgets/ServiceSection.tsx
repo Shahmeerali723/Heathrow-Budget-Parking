@@ -7,22 +7,22 @@ const ServiceSection = () => {
   const data = [
     {
     title :"Best Price Guarantee",
-    desc : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    desc : "Get the lowest rates on Heathrow parking, guaranteed. ",
     image :"/guarantee.png"
   },
     {
     title :"Easy Booking",
-    desc : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    desc : "Quick and hassle-free online reservations. ",
     image :"/booking.png"
   },
     {
     title :"Airport & Hotel Parking",
-    desc : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    desc : "Convenient parking solutions for both airport and hotel stays. ",
     image :"/customer.png"
   },
     {
     title :"24/7 Customer Services",
-    desc : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    desc : "Support available anytime, day or night. ",
     image :"/park.png"
   },
 ]
