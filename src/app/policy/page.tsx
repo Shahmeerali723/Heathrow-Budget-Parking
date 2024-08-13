@@ -8,11 +8,10 @@ const Page = () => {
     <div className='flex flex-col gap-5 py-[50px] sm:container '>
         <div className='md:w-[50%] mx-auto sm:w-[80%] w-full space-y-[20px] text-center sm:p-0 '>
             <h1 className='capitalize text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-extraDark'>
-            privacy & policy
+            Privacy Policy
+
             </h1>
-            <p className='font-semibold text-xs sm:text-sm text-secondary-extraDark'>
-                {"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"}
-            </p>
+           
         </div>
 
         <div className="">
@@ -20,10 +19,15 @@ const Page = () => {
                 <div className='p-5 border-[#CACACA] border text-sm rounded-lg  w-full'>
                     <div className=" text-sm   sm:container  h-[485px] overflow-y-auto  sm:p-6 custom-scrollbar ">
                         <div className='sm:container'>
-                            <p>{'CABBX LTD "us", "we", or "our" operates the wwwCABBX.co.uk website the "Service". This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information under this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, accessible from www.x-ride.co.uk Information Collection and Use We collect several different types of information for various purposes to provide and improve our Service to you.'}</p>
-                            <h3 className="text-[14px] font-bold text-gray-700 mt-6 mb-2">Types of Data Collected</h3>
-                            <h4 className="text-[12px] font-bold text-gray-700 mb-2">Personal Data</h4>
-                            <p>{'While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you "Personal Data". Personally, identifiable information may include, but is not limited to: Email address First name and last name Phone number Address, State, Province, ZIP/Postal code, City Cookies and Usage Data'}</p>
+                            <p className='mb-3 mt-6'>{'Welcome to Heathrow Budget Parking ("we", "us", or "our"). This Privacy Policy outlines how we collect, use, and protect your personal information when you visit our website'} <a href="http://www.heathrowbudgetparking.co.uk" target='_blank'>http://www.heathrowbudgetparking.co.uk</a>{' or use our services. We are committed to safeguarding your privacy in accordance with the General Data Protection Regulation (GDPR) and other applicable UK data protection laws.'}</p>
+
+                            
+                            <h4 className="text-[14px] font-bold text-gray-700 mb-2 mt-6">1. Information We Collect</h4>
+                            <p>{'We only collect the personal data that you provide to us directly:'}</p>
+
+                            <p><b className='text-[12px] font-bold'>Contact Information:</b> Name, email address, and phone number.</p>
+                            <p><b className='text-[12px] font-bold'>Booking Details:</b> Information related to your booking, including dates and car information.</p>
+                            <p><b className='text-[12px] font-bold'>Payment Information:</b> Although we may handle payments through third-party payment processors, we do not store payment details ourselves.</p>
                             <h4 className="text-[12px] font-bold text-gray-700 mb-2 mt-6">Usage Data</h4>
                             <p>{"We may also collect information about how the Service is accessed and used Usage Data. This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data."}</p>
                             <h3 className="text-[14px] font-bold text-gray-700 mt-6 mb-2">Tracking &amp; Cookies Data</h3>
