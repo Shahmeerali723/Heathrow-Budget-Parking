@@ -19,7 +19,7 @@ const Page = () => {
                 <div className='p-5 border-[#CACACA] border text-sm rounded-lg  w-full'>
                     <div className=" text-sm   sm:container  h-[485px] overflow-y-auto  sm:p-6 custom-scrollbar ">
                         <div className='sm:container'>
-                            <p className='mb-3 mt-6'>{'Welcome to Heathrow Budget Parking ("we", "us", or "our"). This Privacy Policy outlines how we collect, use, and protect your personal information when you visit our website'} <a href="http://www.heathrowbudgetparking.co.uk" target='_blank'>http://www.heathrowbudgetparking.co.uk</a>{' or use our services. We are committed to safeguarding your privacy in accordance with the General Data Protection Regulation (GDPR) and other applicable UK data protection laws.'}</p>
+                            <p className='mb-3 mt-6'>{'Welcome to Heathrow Budget Parking ("we", "us", or "our"). This Privacy Policy outlines how we collect, use, and protect your personal information when you visit our website'} <a href="http://www.heathrowbudgetparking.co.uk" target='_blank' className='text-blue-500'>http://www.heathrowbudgetparking.co.uk</a>{' or use our services. We are committed to safeguarding your privacy in accordance with the General Data Protection Regulation (GDPR) and other applicable UK data protection laws.'}</p>
 
                             
                             <h4 className="text-[16px] font-bold text-gray-700 mb-0 mt-6">1. Information We Collect</h4>
@@ -63,21 +63,27 @@ const Page = () => {
                             <p><b className='text-[14px] font-bold'>Right to Erasure:</b> Request the deletion of your data under certain conditions.</p>
                             <p><b className='text-[14px] font-bold'>Right to Restrict Processing:</b> Request that we limit how we process your data.</p>
                             <p><b className='text-[14px] font-bold'>Right to Data Portability:</b> Request that we transfer your data to another service provider.</p>
+                            <p><b className='text-[14px] font-bold'>Right to Object:</b> Object to the processing of your data in specific situations.To exercise any of these rights, please contact us at <a href="mailto:info@heathrowbudgetparking.co.uk" className='text-blue-500'>info@heathrowbudgetparking.co.uk</a></p>
 
-                            <h3 className="text-[14px] font-bold text-gray-700 mt-6 mb-2">Security of Data</h3>
-                            <p>The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.</p>
-                            <h3 className="text-[14px] font-bold text-gray-700 mt-6 mb-2">Service Providers</h3>
-                            <p>{'We may employ third party companies and individuals to facilitate our Service "Service Providers", to provide the Service on our behalf, to perform Service-related services or to assist us in analysing how our Service is used. These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.'}</p>
-                            <h3 className="text-[14px] font-bold text-gray-700 mt-6 mb-2">Analytics</h3>
-                            <p>We may use third-party Service Providers to monitor and analyse the use of our Service. Google Analytics Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its advertising network. You can opt-out of having made your activity on the Service available to Google Analytics by installing the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js, analytics.js, and dc.js) from sharing information with Google Analytics about visits activity. For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page.</p>
-                            <h3 className="text-[14px] font-bold text-gray-700 mt-6 mb-2">Links to Other Sites</h3>
-                            <p>{"Our Service may contain links to other sites that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit. We have no control over and assume no responsibility for the content, privacy policies or practices of any third-party sites or services."}</p>
-                            <h3 className="text-[14px] font-bold text-gray-700 mt-6 mb-2">{"Children's Privacy"}</h3>
-                            <p>{'Our Service does not address anyone under the age of 18 "Children". We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we take steps to remove that information from our servers.'}</p>
-                            <h3 className="text-[14px] font-bold text-gray-700 mt-6 mb-2">Changes to This Privacy Policy</h3>
-                            <p>{'We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. We will let you know via email and/or a prominent notice on our Service, before the change becoming effective and update the "effective date" at the top of this Privacy Policy. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.'}</p>
-                            <h3 className="text-[14px] font-bold text-gray-700 mt-6 mb-2">Contact Us</h3>
-                            <p>If you have any questions about this Privacy Policy, please contact us: By email: info@x-ride.co.uk</p>
+                            <h3 className="text-[16px] font-bold text-gray-700 mt-6 mb-2">7. Data Security</h3>
+                            <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, or disclosure. However, no online transmission is entirely secure, so we cannot guarantee absolute security</p>
+
+                            <h3 className="text-[16px] font-bold text-gray-700 mt-6 mb-2">8. Cookies and Tracking Technologies</h3>
+                            <p>We may use cookies and similar technologies to enhance your experience on our website. For more details, please refer to our [Cookie Policy] on our website.</p>
+
+
+                            <h3 className="text-[16px] font-bold text-gray-700 mt-6 mb-2">9. Changes to This Privacy Policy</h3>
+                            <p>We may update this Privacy Policy periodically. The latest version will be posted on our website, and significant changes will be communicated to you directly.</p>
+
+                            <h3 className="text-[16px] font-bold text-gray-700 mt-6 mb-2">10. Contact Us</h3>
+                            <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
+                            <h3 className="text-[16px] font-bold text-gray-700 mt-6 mb-2">Heathrow Budget Parking</h3>
+                            <p><b className='text-[14px] font-bold'>Email:</b> info@heathrowbudgetparking.co.uk</p>
+                            <p><b className='text-[14px] font-bold'>Phone:</b> R+447880333368</p>
+                            <p><b className='text-[14px] font-bold'>Website:</b> <a href="http://www.heathrowbudgetparking.co.uk" target="_blank" className='text-blue-500'>http://www.heathrowbudgetparking.co.uk</a></p>
+
+                            
+                            
                         </div>
                     </div>
                 </div>
